@@ -4,11 +4,11 @@
 
 # Milestone
 ## Phase 1 - Get User Data
-- [ ] 1. Read lastest API documents 
+- [ ] 1. Read latest API documents 
 - [ ] 1.1 Base URL
 - [ ] 1.2 Authorization
 - [ ] 1.2 Get rate-limit
-- [ ] 2. Write code to crawl User data from id:1 to lastest
+- [ ] 2. Write code to crawl User data from id:1 to latest
 - [ ] 2.1 Crawl one User data and store it into database
 - [ ] 2.2 Write loop codes to crawl all data
 
@@ -17,7 +17,7 @@
 ## Phase 3 - Do some base analysis
 
 # Weapon
-RESTful
+[RESTful](http://stackoverflow.com/questions/671118/what-exactly-is-restful-programming)
 
 JSON
 
@@ -28,6 +28,8 @@ MySQL
 Docker
 
 # Dependencies
+[click](http://click.pocoo.org/5/)
+
 requests
  
 sqlalchemy/ponyorm/peewee
