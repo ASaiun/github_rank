@@ -15,3 +15,25 @@
 ## Phase 2 - Display User Data
 
 ## Phase 3 - Do some base analysis
+
+# Weapon
+REATful
+
+JSON
+
+Python
+
+MySQL
+
+Docker
+
+# Dependencies
+requests
+ 
+sqlalchemy/ponyorm/peewee
+ 
+flask
+ 
+tox/py.test
+
+numpy pandas matplot
