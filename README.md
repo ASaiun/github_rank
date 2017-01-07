@@ -17,7 +17,7 @@
 ## Phase 3 - Do some base analysis
 
 # Weapon
-REATful
+RESTful
 
 JSON
 
