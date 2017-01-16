@@ -16,15 +16,16 @@ class CrawUser(Config):
                                 auth=(self.username, self.password))
 
         print response.status_code
-        #print response.headers
-        #print json.loads(response.text)[0].get('id')
+        # print response.headers
+        # print json.loads(response.text)[0].get('id')
         # print config.Config.GITHUB_USER
         # print config.Config.GTIHUB_PASSWORD
         return json.loads(response.text)
-        #def get_user_data(self):
-    def get_id_user_data(self, id = 0):
+        # def get_user_data(self):
+
+    def get_id_user_data(self, id=0):
         url = self.base_url + '/users?since=' + str(id)
-        print  url
+        print url
         response = requests.get(url, auth=(self.username, self.password))
         print response.status_code
         print response.headers
@@ -34,6 +35,4 @@ class CrawUser(Config):
 
     def get_all_user_data(self):
         pass
-        #for id_next in self.get_all_user_data()[id]
-
-
+        # for id_next in self.get_all_user_data()[id]
