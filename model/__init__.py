@@ -1,11 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
-from config import Config
+from config import MysqlConfig,SqliteConfig
 
-DBBase = declarative_base()
+#DBBase = MysqlConfig.DBBase
+DBBase =SqliteConfig.DBBase
 
-engine = create_engine(Config.SQLALCHECHEMY_DATABASE_URI)
+#engine = create_engine(MysqlConfig.SQLALCHECHEMY_DATABASE_URI)
+engine = create_engine(SqliteConfig.SQLALCHECHEMY_DATABASE_URI)
 
 from sqlalchemy.orm import sessionmaker
 

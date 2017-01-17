@@ -8,7 +8,7 @@ class UserStore():
     def user_store(self):
         c = CrawlUser()
         count = 0
-        from_id = 282655
+        from_id = 0
 
         flag = True
         while (flag):

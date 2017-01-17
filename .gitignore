@@ -1,6 +1,8 @@
 *.py[cod]
 data/*
 
+*.sqlite
+
 # C extensions
 *.so
 
