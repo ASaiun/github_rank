@@ -9,6 +9,7 @@ engine = create_engine(Config.SQLALCHECHEMY_DATABASE_URI)
 
 from sqlalchemy.orm import sessionmaker
 
-session = sessionmaker()
-session.configure(bind=engine)
-DBBase.metadata.create_all(engine)
+Session = sessionmaker()
+Session.configure(bind=engine)
+session = Session()
+

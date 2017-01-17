@@ -5,8 +5,8 @@ import requests
 from config import Config
 
 
-class CrawUser(Config):
-    def __init__(self, Config):
+class CrawlUser():
+    def __init__(self):
         self.username = Config.GITHUB_USER
         self.password = Config.GITHUB_PASSWORD
         self.base_url = 'https://api.github.com'
