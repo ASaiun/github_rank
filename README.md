@@ -4,10 +4,10 @@
 
 # Milestone
 ## Phase 1 - Get User Data
-- [ ] 1. Read latest API documents 
-- [ ] 1.1 Base URL
+- [x] 1. Read latest API documents 
+- [x] 1.1 Base URL
 - [ ] 1.2 Authorization
-- [ ] 1.2 Get rate-limit
+- [ ] 1.3 Get rate-limit
 - [ ] 2. Write code to crawl User data from id:1 to latest
 - [ ] 2.1 Crawl one User data and store it into database
 - [ ] 2.2 Write loop codes to crawl all data
