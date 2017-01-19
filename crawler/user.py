@@ -2,37 +2,49 @@ import json
 
 import requests
 
+from sqlalchemy import desc
+from crawler.base import Base
 from config import Config
+from model.userData import User
+from model import session
 
 
-class CrawlUser():
+class CrawlUser(Base):
     def __init__(self):
         self.username = Config.GITHUB_USER
         self.password = Config.GITHUB_PASSWORD
         self.base_url = 'https://api.github.com'
+        self.id = session.query(User.id).order_by(desc(User.id)).first()[0]
 
-    def get_user_data(self):
-        response = requests.get(self.base_url + '/users',
-                                auth=(self.username, self.password))
+    def start(self):
+        from_id = self.id
+        flag = True
+        while (flag):
+            temp_id, count = self.parse(from_id)
+            if temp_id == None:
+                flag = False
+            if count == 30:
+                from_id = temp_id
 
-        print response.status_code
-        # print response.headers
-        # print json.loads(response.text)[0].get('id')
-        # print config.Config.GITHUB_USER
-        # print config.Config.GTIHUB_PASSWORD
-        return json.loads(response.text)
-        # def get_user_data(self):
+    def crawl(self, from_id):
+        url = self.base_url + '/users?since=' + str(from_id)
+        print(url)
+        return requests.get(url, auth=(self.username, self.password))
 
-    def get_id_user_data(self, id=0):
-        url = self.base_url + '/users?since=' + str(id)
-        print url
-        response = requests.get(url, auth=(self.username, self.password))
-        print response.status_code
-        print response.headers
-        print json.loads(response.text)[0].get('id')
+    def parse(self, from_id):
+        count = 0
+        for uj in json.loads(self.crawl(from_id).text):
+            count = count + 1
+            user = User(uj.get("id"), uj.get("login"), uj.get("avatar_url"), uj.get("gravatar_id"), uj.get("url"),
+                        uj.get("html_url"), uj.get("followers_url"), uj.get("following_url"), uj.get("gists_url"),
+                        uj.get("starred_url"), uj.get("subscriptions_url"), uj.get("organizations_url"),
+                        uj.get("repos_url"), uj.get("events_url"), uj.get("received_events_url"), uj.get("type"),
+                        uj.get("site_admin"), uj.get("name"), uj.get("company"), uj.get("blog"), uj.get("location"),
+                        uj.get("email"), uj.get("hireable"), uj.get("bio"),
+                        uj.get("public_repos"), uj.get("public_gists"), uj.get("followers"),
+                        uj.get("following"), uj.get("created_at"), uj.get("updated_at"))
+            session.add(user)
+            session.commit()
+            temp_id = uj.get("id")
 
-        return json.loads(response.text)
-
-    def get_all_user_data(self):
-        pass
-        # for id_next in self.get_all_user_data()[id]
+        return temp_id, count

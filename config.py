@@ -9,7 +9,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
 
     # engine = None
-    DBBase = declarative_base()
     GITHUB_USER = os.environ.get('GITHUB_USER')
     GITHUB_PASSWORD = os.environ.get('GITHUB_PASSWORD')
     BASE_URL = 'https://api.github.com'
