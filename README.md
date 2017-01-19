@@ -6,11 +6,11 @@
 ## Phase 1 - Get User Data
 - [x] 1. Read latest API documents 
 - [x] 1.1 Base URL
-- [ ] 1.2 Authorization
-- [ ] 1.3 Get rate-limit
-- [ ] 2. Write code to crawl User data from id:1 to latest
-- [ ] 2.1 Crawl one User data and store it into database
-- [ ] 2.2 Write loop codes to crawl all data
+- [x] 1.2 Authorization
+- [x] 1.3 Get rate-limit
+- [x] 2. Write code to crawl User data from id:1 to latest
+- [x] 2.1 Crawl one User data and store it into database
+- [x] 2.2 Write loop codes to crawl all data
 
 ## Phase 2 - Display User Data
 
