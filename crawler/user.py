@@ -1,6 +1,8 @@
 import json
 
 import requests
+import time
+from requests import ConnectionError
 
 from sqlalchemy import desc
 from crawler.base import Base
@@ -13,21 +15,24 @@ class CrawlUser(Base):
     def __init__(self):
         self.username = Config.GITHUB_USER
         self.password = Config.GITHUB_PASSWORD
-        self.base_url = 'https://api.github.com'
+        self.base_url = Config.BASE_URL
         self.id = session.query(User.id).order_by(desc(User.id)).first()[0]
 
     def start(self):
         from_id = self.id
         flag = True
         while (flag):
-            temp_id, count = self.parse(from_id)
-            if temp_id == None:
-                flag = False
-            if count == 30:
-                from_id = temp_id
+            try:
+                temp_id, count = self.parse(from_id)
+                if temp_id == None:
+                    flag = False
+                if count == 100:
+                    from_id = temp_id
+            except ConnectionError:
+                time.sleep(30)
 
     def crawl(self, from_id):
-        url = self.base_url + '/users?since=' + str(from_id)
+        url = self.base_url + '/users?since=' + str(from_id) + "&per_page=100"
         print(url)
         return requests.get(url, auth=(self.username, self.password))
 

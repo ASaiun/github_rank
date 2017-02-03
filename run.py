@@ -22,7 +22,7 @@ def db():
 def crawler():
     from crawler.user import CrawlUser
     crawl_user = CrawlUser()
-    crawl_user.start() # only one task
+    crawl_user.start()
 
 
 if __name__ == '__main__':
