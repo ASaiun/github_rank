@@ -38,8 +38,8 @@ class CrawlUser(Base):
 
     def parse(self, from_id):
         count = 0
-        for uj in json.loads(self.crawl(from_id).text):
-            count = count + 1
+        for uj in json.loads(self.crawl(from_id).text.encode('utf-8')):
+            count = count + 1          
             user = User(uj.get("id"), uj.get("login"), uj.get("avatar_url"), uj.get("gravatar_id"), uj.get("url"),
                         uj.get("html_url"), uj.get("followers_url"), uj.get("following_url"), uj.get("gists_url"),
                         uj.get("starred_url"), uj.get("subscriptions_url"), uj.get("organizations_url"),
